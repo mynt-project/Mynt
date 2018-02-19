@@ -11,21 +11,7 @@ confinement: strict
 apps:
   myntd:
     command: myntd
-    plugs:
-            - home
-            - network
-            - network-bind
-  mynt-wallet-cli:
-      command: |
-          mynt-wallet-cli --log-file ${SNAP_USER_DATA}
-      plugs: [network,home]
-  myntnote-wallet-rpc:
-        command: |
-          mynt-wallet-rpc --log-file ${SNAP_USER_DATA}
-        plugs:
-            - home
-            - network
-            - network-bind
+    plugs: [network-bind,network,home]
 parts:
   gnu-mynt:
     plugin: make
