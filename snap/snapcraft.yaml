@@ -1,4 +1,4 @@
-name: mynt-blockchain
+# name: mynt-blockchain
 version:  "0.11.2"
 summary: Mynt Daemon, the "Mynt Daemon" snap
   description: |
