@@ -1,0 +1,94 @@
+  # After registering a name on build.snapcraft.io, commit an uncommented line:
+  # name: your-registered-name
+  # name: mynt
+  version: "0.11.2"
+  summary: Mynt Daemon
+  description: |
+    Mynt is a private, secure, untraceable, decentralised digital currency.
+    You are your bank, you control your funds, and nobody can trace your transfers
+    unless you allow them to do so.
+  grade: devel # must be 'stable' to release into candidate/stable channels
+  # confinement: devmode # use 'strict' once you have the right plugs and slots
+  # confinement: strict
+
+apps:
+    myntd:
+      command: |
+          myntd 
+      plugs: [network-bind,network,home]
+    monero-wallet-cli:
+      command: |
+          mynt-wallet-cli --log-file ${SNAP_USER_DATA}
+      plugs: [network,home]
+    myntnote-wallet-rpc:
+        command: |
+          mynt-wallet-rpc --log-file ${SNAP_USER_DATA}
+        plugs:
+            - home
+            - network
+            - network-bind
+
+arts:
+    myntd:
+      plugin: make
+      source: https://github.com/mynt-project/Mynt/archive/0.11.0.2.tar.gz
+      install: | 
+        mv ./build/release/bin/* $SNAPCRAFT_PART_INSTALL/bin/
+        cd ./build/release/src/wallet && make install
+      build-packages:
+        - gcc 
+        - g++
+        - cmake
+        - libboost-all-dev 
+        - libdb5.3-dev
+        - libunbound-dev
+        - libunwind8-dev
+        - libssl-dev
+
+ parts:
+        cmake-build:
+            plugin: cmake
+            configflags:
+                - -DBDB_STATIC=1
+                - -DUPNP_STATIC=1
+                - -DBoost_USE_STATIC_LIBS=1
+                - -DBoost_USE_STATIC_RUNTIME=1
+                - -DARCH=default
+            source: .
+            build-packages:
+                - gcc
+                - pkg-config
+                - libunbound-dev
+                - libevent-dev
+                - libboost-all-dev
+                - libzmqpp-dev
+                - libzmq3-dev
+                - libsodium-dev
+                - libdb-dev
+                - libunwind-dev
+                - libminiupnpc-dev
+                - libldns-dev
+                - libexpat1-dev
+                - libreadline6-dev
+                - bison
+                - doxygen
+                - graphviz
+            stage-packages:
+                - libminiupnpc10
+                - libunbound2
+                - libunwind8
+            prime:
+                - bin
+                - usr/lib/
+                - -usr/lib/gcc
+                - -usr/share
+
+        dist-files:
+            plugin: dump
+            source: .
+            organize:
+                contrib/snap/myntd.conf: etc/myntd.conf
+                contrib/snap/myntd-wrapper: bin/myntd-wrapper
+            prime:
+                - etc
+                - bin
