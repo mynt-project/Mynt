@@ -28,7 +28,7 @@ apps:
             - network
             - network-bind
 
-arts:
+parts:
     myntd:
       plugin: make
       source: https://github.com/mynt-project/Mynt/archive/0.11.0.2.tar.gz
