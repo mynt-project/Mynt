@@ -20,13 +20,13 @@ Portions Copyright (c) 2012-2013 The Cryptonote developers.
 | Ubuntu 16.04          |  amd64   | [![Ubuntu 16.04 amd64](https://build.getmonero.org/png?builder=monero-static-ubuntu-amd64)](https://build.getmynt.org/builders/mynt-static-ubuntu-amd64)
 | Ubuntu 16.04          |  armv7   | [![Ubuntu 16.04 armv7](https://build.getmonero.org/png?builder=monero-static-ubuntu-arm7)](https://build.getmynt.org/builders/mynt-static-ubuntu-arm7)
 | Debian Stable         |  armv8   | [![Debian armv8](https://build.getmonero.org/png?builder=monero-static-debian-armv8)](https://build.getmynt.org/builders/mynt-static-debian-armv8)
-| OSX 10.10             |  amd64   | [![OSX 10.10 amd64](https://build.getmonero.org/png?builder=monero-static-osx-10.10)](https://build.getmynt.org/builders/mynt-static-osx-10.10)
-| OSX 10.11             |  amd64   | [![OSX 10.11 amd64](https://build.getmonero.org/png?builder=monero-static-osx-10.11)](https://build.getmynt.org/builders/mynt-static-osx-10.11)
-| OSX 10.12             |  amd64   | [![OSX 10.12 amd64](https://build.getmonero.org/png?builder=monero-static-osx-10.12)](https://build.getmynt.org/builders/mynt-static-osx-10.12)
+| OSX 10.10             |  amd64   | [![OSX 10.10 amd64](https://build.getmonero.org/png?builder=monero-release-static-osx-10.10)](https://build.getmynt.org/builders/mynt-static-osx-10.10)
+| OSX 10.11             |  amd64   | [![OSX 10.11 amd64](https://build.getmonero.org/png?builder=monero-release-static-osx-10.11)](https://build.getmynt.org/builders/mynt-static-osx-10.11)
+| OSX 10.12             |  amd64   | [![OSX 10.12 amd64](https://build.getmonero.org/png?builder=monero-release-static-osx-10.12)](https://build.getmynt.org/builders/mynt-static-osx-10.12)
 | FreeBSD 11            |  amd64   | [![FreeBSD 11 amd64](https://build.getmonero.org/png?builder=monero-static-freebsd64)](https://build.getmynt.org/builders/mynt-static-freebsd64)
 | DragonFly BSD 4.6     |  amd64   | [![DragonFly BSD amd64](https://build.getmonero.org/png?builder=monero-static-dragonflybsd-amd64)](https://build.getmynt.org/builders/mynt-static-dragonflybsd-amd64)
-| Windows (MSYS2/MinGW) |  i686    | [![Windows (MSYS2/MinGW) i686](https://build.getmonero.org/png?builder=monero-static-win32)](https://build.getmynt.org/builders/mynt-static-win32)
-| Windows (MSYS2/MinGW) |  amd64   | [![Windows (MSYS2/MinGW) amd64](https://build.getmonero.org/png?builder=monero-static-win64)](https://build.getmynt.org/builders/mynt-static-win64)
+| Windows (MSYS2/MinGW) |  i686    | [![Windows (MSYS2/MinGW) i686](https://build.getmonero.org/png?builder=monero-release-static-win32)](https://build.getmynt.org/builders/mynt-static-win32)
+| Windows (MSYS2/MinGW) |  amd64   | [![Windows (MSYS2/MinGW) amd64](https://build.getmonero.org/png?builder=monero-release-static-win64)](https://build.getmynt.org/builders/mynt-static-win64)
 
 ## Coverage
 
@@ -92,14 +92,14 @@ Dates are provided in the format YYYY-MM-DD.
 
 | Software upgrade block height | Date       | Fork version | Minimum Mynt version | Recommended Mynt version | Details                                                                            |  
 | ------------------------------ | -----------| ----------------- | ---------------------- | -------------------------- | ---------------------------------------------------------------------------------- |
-| 1009827                        | 2018-03-01 | v2                | v0.9.4                 | v0.9.4                     | Allow only >= ringsize 3, blocktime = 120 seconds, fee-free blocksize 60 kb       |
-| XXXXXXX                        | 2018-XX-XX | v3                | v0.9.4                 | v0.10.0                    | Splits coinbase into denominations  |
-| XXXXXXX                        | 2018-XX-XX | v4                | v0.10.1                | v0.10.2.1                  | Allow normal and RingCT transactions |
-| XXXXXXX                        | 2018-XX-XX | v5                | v0.10.3.0              | v0.10.3.1                  | Adjusted minimum blocksize and fee algorithm      |
-| XXXXXXX                        | 2018-XX-XX | v6                | v0.11.0.0              | v0.11.0.0                  | Allow only RingCT transactions, allow only >= ringsize 5      |
-| XXXXXXX                        | 2018-03-XX | XX                | XXXXXXXXX              | XXXXXXXXX                  | XXXXXX
+| 84000                        | 2018-02-16 | v2                | v0.11.0.0                  | v0.11.0.0                     | Allow only >= ringsize 3, blocktime = 120 seconds, fee-free blocksize 60 kb       |
+| 84006                       | 2018-02-17 | v3                | v0.11.0.1                  | v0.11.0.1                    | Splits coinbase into denominations  |
+| 84012                        | 2018-02-17 | v4                | v0.11.0.1                 | v0.11.0.2                  | Allow normal and RingCT transactions |
+| 84024                        | 2018-02-17 | v5                | v0.11.0.2              | v0.11.0.2                  | Adjusted minimum blocksize and fee algorithm      |
+| 84030                        | 2018-02-17 | v6                | v0.11.0.2              | v0.11.0.2                  | Allow only RingCT transactions, allow only >= ringsize 5      |
+| XXXXXXX                        | 2018-03-10 | XX                | XXXXXXXXX              | XXXXXXXXX                  | XXXXXX
 
-X's indicate that these details have not been determined as of commit date, 2017-01-04. 
+X's indicate that these details have not been determined as of commit date, 2018-02-19. 
 
 ## Release staging schedule and protocol
 
@@ -141,6 +141,15 @@ Installing a snap is very quick. Snaps are secure. They are isolated with all of
 Packaging for your favorite distribution would be a welcome contribution!
 
 ## Compiling Mynt from source
+
+### Pre installation 
+```
+git clone https://github.com/AltcoinCoop/Mynt/
+cd Mynt
+git lfs fetch
+git lfs checkout
+git lfs pull
+```
 
 ### Dependencies
 
