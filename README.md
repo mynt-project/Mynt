@@ -333,6 +333,33 @@ If you are using the older Raspbian Jessie image, compiling Mynt is a bit more c
 
 * From here, follow the [general Raspberry Pi instructions](#on-the-raspberry-pi) from the "Clone mynt and checkout most recent release version" step.
 
+#### On Mac/OSX: 
+Here's what your Mac OSX install should look like:
+```
+#!/usr/bin/env bash 
+xcode-select --install
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install gcc@5 cmake pkg-config boost@1.59 boost openssl@1.1 zmqpp zmq unbound libsodium miniupnpc libunwind-headers xz readline ldns expat doxygen graphviz git
+echo "Dependencies installation complete"
+git clone https://github.com/AltcoinCoop/Mynt/
+cd Mynt
+make
+echo "Build process complete"
+```
+If you have not previously installed XCode or used a Package Manager like [HomeBrew](http://brew.sh) ---
+Full Install one-liner below: 
+cCopy the entire line and enter it in your console window. 
+Then bash ./osx_build.sh
+```
+echo -e 'xcode-select --install\n/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"\nbrew doctor\nbrew install gcc@5 git cmake pkg-config boost@1.59 boost openssl@1.1 zmqpp zmq unbound libsodium miniupnpc libunwind-headers xz readline ldns expat doxygen graphviz\necho "Dependencies installation complete"\ngit clone https://github.com/AltcoinCoop/Mynt/\ncd Mynt\nmake\necho "Mynt Build process complete"' > osx_build.sh
+```
+If you have Brew and want to install the dependencies in one line, go ahead with the partial build: 
+Copy the entire line and hit enter into your console window.
+Then bash ./osx.sh
+```
+echo -e 'brew install gcc@5 cmake git pkg-config boost@1.59 boost openssl@1.1 zmqpp zmq unbound libsodium miniupnpc libunwind-headers xz readline ldns expat doxygen graphviz\necho "Dependencies installation complete"\ngit clone https://github.com/AltcoinCoop/Mynt/\ncd Mynt\nmake\necho "Mynt Build process complete"' > osx_brew.sh
+```
+
 #### On Windows:
 
 Binaries for Windows are built on Windows using the MinGW toolchain within
