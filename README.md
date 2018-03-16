@@ -348,7 +348,7 @@ echo "Build process complete"
 ```
 If you have not previously installed XCode or used a Package Manager like [HomeBrew](http://brew.sh) ---
 Full Install one-liner below: 
-cCopy the entire line and enter it in your console window. 
+Copy the entire line and enter it in your console window. 
 Then bash ./osx_build.sh
 ```
 echo -e 'xcode-select --install\n/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"\nbrew doctor\nbrew install gcc@5 git cmake pkg-config boost@1.59 boost openssl@1.1 zmqpp zmq unbound libsodium miniupnpc libunwind-headers xz readline ldns expat doxygen graphviz\necho "Dependencies installation complete"\ngit clone https://github.com/AltcoinCoop/Mynt/\ncd Mynt\nmake\necho "Mynt Build process complete"' > osx_build.sh
