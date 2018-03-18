@@ -416,10 +416,13 @@ namespace nodetool
     }
     else
     {
-      full_addrs.insert("104.236.175.63:30000");
-      full_addrs.insert("46.101.76.70:30000");
-      full_addrs.insert("159.203.28.200:30000");
-      full_addrs.insert("128.199.85.61:30000");
+      full_addrs.insert("159.65.112.12:48080");
+      full_addrs.insert("139.59.26.164:48080");
+      full_addrs.insert("46.101.40.29:48080");
+      full_addrs.insert("138.197.149.126:48080");
+      full_addrs.insert("165.227.189.226:48080");
+      full_addrs.insert("159.65.83.53:48080");
+      full_addrs.insert("178.62.194.78:48080");
     }
     return full_addrs;
   }
