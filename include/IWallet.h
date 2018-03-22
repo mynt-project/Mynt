@@ -38,6 +38,7 @@
 #include <string>
 #include <system_error>
 #include <vector>
+#include "android.h"
 
 namespace CryptoNote {
 
