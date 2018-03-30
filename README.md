@@ -97,7 +97,7 @@ Dates are provided in the format YYYY-MM-DD.
 | 84012                        | 2018-02-17 | v4                | v0.11.0.1                 | v0.11.0.2                  | Allow normal and RingCT transactions |
 | 84024                        | 2018-02-17 | v5                | v0.11.0.2              | v0.11.0.2                  | Adjusted minimum blocksize and fee algorithm      |
 | 84030                        | 2018-02-17 | v6                | v0.11.0.2              | v0.11.0.2                  | Allow only RingCT transactions, allow only >= ringsize 5      |
-| XXXXXXX                        | 2018-03-10 | XX                | XXXXXXXXX              | XXXXXXXXX                  | XXXXXX
+| XXXXXXX                        | 2018-04-15 | XX                | XXXXXXXXX              | XXXXXXXXX                  | XXXXXX
 
 X's indicate that these details have not been determined as of commit date, 2018-02-19. 
 
@@ -143,6 +143,41 @@ Packaging for your favorite distribution would be a welcome contribution!
 ## Compiling Mynt from source
 
 ### Pre installation 
+#### Install Git LFS 
+On Windows, simply download the release and follow the prompts on https://git-lfs.github.com
+
+#### On Linux 
+```
+sudo apt-get install git-lfs
+```
+If the package is not found, use the instructions provided by Git to install on your machine: 
+https://github.com/git-lfs/git-lfs/blob/master/INSTALLING.md
+Should be brief. See below for excerpt of the process.
+
+packagecloud provides scripts to automate the process of configuring the package repository on your system, importing signing-keys etc. These scripts must be run sudo root, and you should review them first. The scripts are:
+
+Apt/deb repositories: https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh
+Yum/rpm repositories: https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh
+The scripts check your Linux distribution and version, and use those parameters to create the best repository URL. If you are running one of the distributions listed for the latest version of Git LFS listed at packagecloud e.g debian/jessie, el/7, you can run the script without parameters:
+
+Apt/deb repos: curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+
+Yum/rpm repos: curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | sudo bash
+
+If you are running a distribution which does not match exactly a repository uploaded for Git LFS, but for which there is a repository for a compatible upstream distribution, you can either run the script with some additional parameters, or run it and then manually-correct the resulting repository URLs. See #1074 for details.
+
+If you are running LinuxMint 17.1 Rebecca, which is downstream of Ubuntu Trusty and Debian Jessie, you can run:
+
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | os=debian dist=jessie sudo -E sudo bash
+
+The os and dist variables passed-in will override what would be detected for your system and force the selection of the upstream distribution's repository.
+
+### Clone the Repo
+```
+git lfs clone https://github.com/AltcoinCoop/Mynt/
+cd Mynt
+```
+or if you forgot to clone with Git LFS (as stated above) don't panic, proceed with the following.
 ```
 git clone https://github.com/AltcoinCoop/Mynt/
 cd Mynt
@@ -150,6 +185,7 @@ git lfs fetch
 git lfs checkout
 git lfs pull
 ```
+If you are unable to readjust the file pointers left behind by Git LFS to the file objects, you may proceed but your copy of the blockchain may not fully compile or there may be an error in your daemon which says the key/pair mismatch. This is OK, but not optimal. For faster syncing with the blockchain and hardened checkpoints make sure to follow the quick and easy Git LFS setup and ``` git lfs clone https://github.com/AltcoinCoop/Mynt/ ``` or update with ```git lfs fetch, git lfs checkout, git lfs pull ```  
 
 ### Dependencies
 
@@ -180,6 +216,7 @@ library archives (`.a`).
 | GTest          | 1.5           | YES      | `libgtest-dev`^    | `gtest`        | YES      | Test suite     |
 | Doxygen        | any           | NO       | `doxygen`          | `doxygen`      | YES      | Documentation  |
 | Graphviz       | any           | NO       | `graphviz`         | `graphviz`     | YES      | Documentation  |
+| Git LFS        | any           | NO       | `git-lfs`          | `git-lfs`      | YES      | Documentation  |
 
 [^] On Debian/Ubuntu `libgtest-dev` only includes sources and headers. You must
 build the library binary manually. This can be done with the following command ```sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake . && sudo make && sudo mv libg* /usr/lib/ ```
@@ -295,6 +332,33 @@ If you are using the older Raspbian Jessie image, compiling Mynt is a bit more c
 * Wait ~4 hours
 
 * From here, follow the [general Raspberry Pi instructions](#on-the-raspberry-pi) from the "Clone mynt and checkout most recent release version" step.
+
+#### On Mac/OSX: 
+Here's what your Mac OSX install should look like:
+```
+#!/usr/bin/env bash 
+xcode-select --install
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew install gcc@5 cmake pkg-config boost@1.59 boost openssl@1.1 zmqpp zmq unbound libsodium miniupnpc libunwind-headers xz readline ldns expat doxygen graphviz git
+echo "Dependencies installation complete"
+git clone https://github.com/AltcoinCoop/Mynt/
+cd Mynt
+make
+echo "Build process complete"
+```
+If you have not previously installed XCode or used a Package Manager like [HomeBrew](http://brew.sh) ---
+Full Install one-liner below: 
+Copy the entire line and enter it in your console window. 
+Then bash ./osx_build.sh
+```
+echo -e 'xcode-select --install\n/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"\nbrew doctor\nbrew install gcc@5 git cmake pkg-config boost@1.59 boost openssl@1.1 zmqpp zmq unbound libsodium miniupnpc libunwind-headers xz readline ldns expat doxygen graphviz\necho "Dependencies installation complete"\ngit clone https://github.com/AltcoinCoop/Mynt/\ncd Mynt\nmake\necho "Mynt Build process complete"' > osx_build.sh
+```
+If you have Brew and want to install the dependencies in one line, go ahead with the partial build: 
+Copy the entire line and hit enter into your console window.
+Then bash ./osx.sh
+```
+echo -e 'brew install gcc@5 cmake git pkg-config boost@1.59 boost openssl@1.1 zmqpp zmq unbound libsodium miniupnpc libunwind-headers xz readline ldns expat doxygen graphviz\necho "Dependencies installation complete"\ngit clone https://github.com/AltcoinCoop/Mynt/\ncd Mynt\nmake\necho "Mynt Build process complete"' > osx_brew.sh
+```
 
 #### On Windows:
 
